@@ -15,6 +15,8 @@
 		2840D7CE1179279E00D7F93C /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2840D7CD1179279E00D7F93C /* Profile.xib */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
+		3F6F8462128C893000C4CA02 /* schedulecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6F8461128C893000C4CA02 /* schedulecell.xib */; };
+		3F6F8469128C8E0800C4CA02 /* scheduledetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6F8468128C8E0800C4CA02 /* scheduledetail.xib */; };
 		91094779128A228C00E20459 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91094778128A228C00E20459 /* YAJLIOS.framework */; };
 		9193B1631280DDBD00C1F08D /* Scores.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9193B1621280DDBD00C1F08D /* Scores.xib */; };
 		9193B1651280DDC800C1F08D /* Standings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9193B1641280DDC800C1F08D /* Standings.xib */; };
@@ -38,6 +40,8 @@
 		28A0AB4B0D9B1048005BE974 /* SportsManagement_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportsManagement_Prefix.pch; sourceTree = "<group>"; };
 		28AD73870D9D96C1002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3F6F8461128C893000C4CA02 /* schedulecell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = schedulecell.xib; sourceTree = "<group>"; };
+		3F6F8468128C8E0800C4CA02 /* scheduledetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = scheduledetail.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SportsManagement-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SportsManagement-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91094778128A228C00E20459 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
 		9193B1621280DDBD00C1F08D /* Scores.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Scores.xib; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				3F6F8468128C8E0800C4CA02 /* scheduledetail.xib */,
 			);
 			name = SportsManagement;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				282CCBFD0DB6C98000C4EA27 /* Schedule.xib */,
 				9193B1621280DDBD00C1F08D /* Scores.xib */,
 				9193B1641280DDC800C1F08D /* Standings.xib */,
+				3F6F8461128C893000C4CA02 /* schedulecell.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -263,6 +269,8 @@
 				2840D7CE1179279E00D7F93C /* Profile.xib in Resources */,
 				9193B1631280DDBD00C1F08D /* Scores.xib in Resources */,
 				9193B1651280DDC800C1F08D /* Standings.xib in Resources */,
+				3F6F8462128C893000C4CA02 /* schedulecell.xib in Resources */,
+				3F6F8469128C8E0800C4CA02 /* scheduledetail.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
