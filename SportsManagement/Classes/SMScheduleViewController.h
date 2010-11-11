@@ -10,7 +10,9 @@
 
 
 @interface SMScheduleViewController : UITableViewController {
-
+	NSMutableData *pulledData;
+	NSArray *pulledResults;
 }
 
+@property (nonatomic, retain) NSArray *pulledResults;
 @end

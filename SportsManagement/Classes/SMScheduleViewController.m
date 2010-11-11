@@ -11,6 +11,7 @@
 
 @implementation SMScheduleViewController
 
+@synthesize pulledResults;
 
 #pragma mark -
 #pragma mark Initialization
@@ -29,15 +30,33 @@
 
 #pragma mark -
 #pragma mark View lifecycle
+#define GAMESURL @"http://nicsports.railsplayground.net/games.json"
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	NSLog(@"View did Load");
+	pulledData = [[NSMutableData alloc] init];
+	self.pulledResults = [NSArray array];
+	
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:GAMESURL]];
+	[NSURLConnection connectionWithRequest:request delegate:self];
+						  
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) connection:(NSURLConnection *)connection didReceiveResponce:(NSURLResponse *)responce{
+	[pulledData setLength:0];
+}
+-(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+	[pulledData appendData:data];
+}
+-(void) connectionDidFinishLoading:(NSURLConnection *)connection{
+	self.pulledResults = [pulledData yajl_JSON];
+	NSLog(@"results=%@", self.pulledResults);
+}
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
