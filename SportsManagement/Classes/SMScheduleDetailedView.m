@@ -17,6 +17,7 @@
 @synthesize addCityLabel;
 @synthesize addStateLabel;
 @synthesize addZipLabel;
+@synthesize availSwitch;
 
 
 
@@ -24,9 +25,35 @@
 -(void)viewWillAppear:(BOOL)animated{
 	NSLog(@"made it to the SMScheduleDetaledClass");
 	[super viewWillAppear:animated];
-	self.addLineOneLabel.text = self.event.addLineOne;
+	// self.addLineOneLabel.text = self.event.addLineOne;
+	
+	NSLog(@"count %d", [[availSwitch subviews] count]);
+	NSLog(@"availSwitch is %@", availSwitch);
+	
+	for (UIView *subview in [availSwitch subviews])  
+    {  
+        if ([subview isKindOfClass:[UILabel class]])  
+        {  
+			NSLog(@"Found a UILabel");
+            [subview setText:@"Yes"];
+        }  
+        else   
+            NSLog(@"No label subview found");;  
+    }  
+	
 }
-
+- (void)loadView
+{
+	[super loadView];
+/**
+// Custom YES/NO
+switchView = [UISwitch switchWithLeftText:@"YES" andRight:@"NO"];
+//switchView.center = CGPointMake(160.0f, 60.0f);
+switchView.on = YES;
+[contentView addSubview:switchView];
+ 
+**/
+}
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

@@ -17,6 +17,7 @@
 	UILabel *addStateLabel;
 	UILabel *addZipLabel;
 	CalendarEvent *event;
+	UISwitch *availSwitch;
 }
 
 @property (nonatomic, retain) CalendarEvent *event;
@@ -24,5 +25,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *addCityLabel;
 @property (nonatomic, retain) IBOutlet UILabel *addStateLabel;
 @property (nonatomic, retain) IBOutlet UILabel *addZipLabel;
+@property (nonatomic, retain) IBOutlet UISwitch *availSwitch;
 
 @end
