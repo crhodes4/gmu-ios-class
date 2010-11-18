@@ -46,7 +46,7 @@
 	self.eventsArray = [NSMutableArray array];
 	CalendarEvent *game = [[CalendarEvent alloc] initWithTitle:@"VS VTECH"
 						   
-													 eventDate:[self dateFromCustomString: @"2010-12-10 12:00:00 +500"]
+													 eventDate:[self dateFromCustomString: @"2010-11-03T15:00:00 -04:00"]
 														//  time:@"12:00"
 												   oposingTeam:@"Virginia Tech"
 													addLineOne:@"123 Main Street"
@@ -59,7 +59,7 @@
 						   
 	[eventsArray addObject:game];
 	[game release];
-	game = [[CalendarEvent alloc] initWithTitle:@"VS GMU" 
+/*	game = [[CalendarEvent alloc] initWithTitle:@"VS GMU" 
 									  eventDate:@"2010-12-10"
 								//		   time:@"12:30"
 									oposingTeam:@"Duke"
@@ -191,7 +191,11 @@
 	titleLabel.text = anEvent.title;
 //	cell.textLabel.text = anEvent.title;
 	UILabel *eventLabel = (UILabel*) [cell viewWithTag:2];
-	eventLabel.text = anEvent.eventDate;
+	NSDateFormatter* dateFormater = [[NSDateFormatter alloc] init];
+	[dateFormater setDateFormat:@"dd-MM-YYYY"];
+	NSString *dateString = [dateFormater stringFromDate:anEvent.eventDate];
+	NSLog(@"anevent %@ string %@",[anEvent.eventDate class], dateString );
+	eventLabel.text = dateString;
 	UILabel *teamlabel = (UILabel*) [cell viewWithTag:3];
 	teamlabel.text = anEvent.oposingTeam;
 //	UILabel *timeLabel = (UILabel*) [cell viewWithTag:4];
@@ -285,9 +289,15 @@ NSLog(@"entered if %d", anEvent.eventDate);
 }
 
 -(NSDate *) dateFromCustomString:(NSString *) dateString{
+	NSRange searchRange = NSMakeRange([dateString length] - 4 , 3);
+	dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0 range:searchRange];
+	dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "]; 
+	NSLog(@"datestring %@", dateString);
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
-	[df setDateFormat:@"yyyy-MM-dd hh:mm:ss a"];
+	[df setDateFormat:@"YYYY-mm-dd HH:MM:SS Z"];
 	NSDate *myDate = [df dateFromString: dateString];
+	NSLog(@"date = %@ mydate %@",[df stringFromDate:[NSDate date]], myDate);
+	[df release];
 	return myDate;
 }
 
