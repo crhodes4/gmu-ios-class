@@ -7,12 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SMScheduleDetailedView.h"
+#import "CalendarEvent.h"
 
 @interface SMScheduleViewController : UITableViewController {
 	NSMutableData *pulledData;
-	NSArray *pulledResults;
+	NSMutableArray *eventsArray;
+	UITableViewCell *nibLoadedCell;
+	SMScheduleDetailedView *eventDetails;
+	CalendarEvent *detailingEvent;
 }
 
-@property (nonatomic, retain) NSArray *pulledResults;
+
+@property (nonatomic, retain) IBOutlet SMScheduleDetailedView *eventDetails;
+@property (nonatomic, retain) NSMutableArray *eventsArray;
+@property (nonatomic, retain) IBOutlet UITableViewCell *nibLoadedCell;
+
+
 @end

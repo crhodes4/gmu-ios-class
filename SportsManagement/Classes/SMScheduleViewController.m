@@ -7,11 +7,15 @@
 //
 
 #import "SMScheduleViewController.h"
-
+//#import "CalendarEvent.h"
+#import "SMScheduleDetailedView.h"
 
 @implementation SMScheduleViewController
 
-@synthesize pulledResults;
+@synthesize eventsArray;
+//@synthesize detailingEvent;
+@synthesize eventDetails;
+
 
 #pragma mark -
 #pragma mark Initialization
@@ -33,15 +37,78 @@
 #define GAMESURL @"http://nicsports.railsplayground.net/games.json"
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 	NSLog(@"View did Load");
-	pulledData = [[NSMutableData alloc] init];
+	
+	self.eventsArray = [NSMutableArray array];
+	CalendarEvent *game = [[CalendarEvent alloc] initWithTitle:@"VS VTECH"
+						   
+													 eventDate:[self dateFromCustomString: @"2010-12-10 12:00:00 +500"]
+														//  time:@"12:00"
+												   oposingTeam:@"Virginia Tech"
+													addLineOne:@"123 Main Street"
+													   addCity:@"noWhere"
+													  addState:@"Virginia"
+														addZip:@"22209"
+													  gameLocation:@"h"
+													 homeStats:@"50-0"
+													 awayStats:@"25-25"];
+						   
+	[eventsArray addObject:game];
+	[game release];
+	game = [[CalendarEvent alloc] initWithTitle:@"VS GMU" 
+									  eventDate:@"2010-12-10"
+								//		   time:@"12:30"
+									oposingTeam:@"Duke"
+									 addLineOne:@"123 Main Street"
+										addCity:@"noWhere"
+									   addState:@"Virginia"
+										 addZip:@"22209"
+									   gameLocation:@"h"
+									  homeStats:@"50-0"
+									  awayStats:@"25-25"];
+	
+	[eventsArray addObject:game];
+	[game release];
+	game = [[CalendarEvent alloc] initWithTitle:@"VS LSU"
+									  eventDate:@"2010-31-10"
+								//		   time:@"1:00"
+									oposingTeam:@"LSU"
+									 addLineOne:@"123 Main Street"
+										addCity:@"noWhere"
+									   addState:@"Virginia"
+										 addZip:@"22209"
+									   gameLocation:@"a"
+									  homeStats:@"50-0"
+									  awayStats:@"25-25"];
+	
+	[eventsArray addObject:game];
+	[game release];
+	game = [[CalendarEvent alloc] initWithTitle:@"VS NC State"
+									  eventDate:@"2010-12-10"
+								//		   time:@"1:30"
+									oposingTeam:@"NC State"
+									 addLineOne:@"123 Main Street"
+										addCity:@"noWhere"
+									   addState:@"Virginia"
+										 addZip:@"22209"
+									   gameLocation:@"a"
+									  homeStats:@"50-0"
+									  awayStats:@"25-25"];
+	
+	[eventsArray addObject:game];
+	[game release];
+	
+	
+/*	pulledData = [[NSMutableData alloc] init];
 	self.pulledResults = [NSArray array];
 	
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:GAMESURL]];
 	[NSURLConnection connectionWithRequest:request delegate:self];
-						  
+					  
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -56,13 +123,16 @@
 -(void) connectionDidFinishLoading:(NSURLConnection *)connection{
 	self.pulledResults = [pulledData yajl_JSON];
 	NSLog(@"results=%@", self.pulledResults);
+*/	
 }
 
-/*
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	//[self.tableView reloadData];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -92,39 +162,66 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [eventsArray count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSLog(@"%d", eventsArray);
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    //    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		
+		[[NSBundle mainBundle] loadNibNamed:@"schedulecell" owner:self options:NULL];
+		cell = nibLoadedCell;
     }
     
     // Configure the cell...
+	CalendarEvent *anEvent = [eventsArray objectAtIndex:indexPath.row];
+	UILabel *titleLabel = (UILabel*)[cell viewWithTag:1];
+	titleLabel.text = anEvent.title;
+//	cell.textLabel.text = anEvent.title;
+	UILabel *eventLabel = (UILabel*) [cell viewWithTag:2];
+	eventLabel.text = anEvent.eventDate;
+	UILabel *teamlabel = (UILabel*) [cell viewWithTag:3];
+	teamlabel.text = anEvent.oposingTeam;
+//	UILabel *timeLabel = (UILabel*) [cell viewWithTag:4];
+//	timeLabel.text = anEvent.time;
+	UIImageView *imageView = (UIImageView*) [cell viewWithTag:5];
+	if (anEvent.gameLocation == @"h") {
+		imageView.image = [UIImage imageNamed:@"home.tiff"];
+	}else {
+		imageView.image = [UIImage imageNamed:@"away.tiff"];
+	}
+	UILabel *homeStatsLabel =(UILabel*) [cell viewWithTag:6];
+	homeStatsLabel.text = anEvent.homeStats;
+	UILabel *awayStatsLabel =(UILabel*) [cell viewWithTag:7];
+	awayStatsLabel.text = anEvent.awayStats;
+NSLog(@"entered if %d", anEvent.eventDate);
+
+//	cell.textLabel.text = 
     
     return cell;
 }
 
-
-/*
+/*-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *) cell forRowAtIndexPath:(NSIndexPath *) indexPath{
+	cell.backgroundColor = (indexPath.row%2)?[UIColor whiteColor]:[UIColor grayColor];
+}*/
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+
 
 
 /*
@@ -162,16 +259,15 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
-}
+    eventDetails = [[SMScheduleDetailedView alloc] initWithNibName:@"SMScheduleDetailedView" bundle:nil];
+	detailingEvent = [eventsArray objectAtIndex:indexPath.row];
+	eventDetails.event = detailingEvent;
+	NSLog(@"view controller = %d Event %d", eventDetails.event, detailingEvent);
+    [self.navigationController pushViewController:eventDetails animated:YES];
+    
 
+}
+    
 
 #pragma mark -
 #pragma mark Memory management
@@ -188,6 +284,12 @@
     // For example: self.myOutlet = nil;
 }
 
+-(NSDate *) dateFromCustomString:(NSString *) dateString{
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	[df setDateFormat:@"yyyy-MM-dd hh:mm:ss a"];
+	NSDate *myDate = [df dateFromString: dateString];
+	return myDate;
+}
 
 - (void)dealloc {
     [super dealloc];
