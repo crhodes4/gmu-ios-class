@@ -46,7 +46,7 @@
 	self.eventsArray = [NSMutableArray array];
 	CalendarEvent *game = [[CalendarEvent alloc] initWithTitle:@"VS VTECH"
 						   
-													 eventDate:[self dateFromCustomString: @"2010-11-03T15:00:00 -04:00"]
+													 eventDate:[self dateFromCustomString: @"2010-11-03T15:00:00-04:00"]
 														//  time:@"12:00"
 												   oposingTeam:@"Virginia Tech"
 													addLineOne:@"123 Main Street"
@@ -192,9 +192,9 @@
 //	cell.textLabel.text = anEvent.title;
 	UILabel *eventLabel = (UILabel*) [cell viewWithTag:2];
 	NSDateFormatter* dateFormater = [[NSDateFormatter alloc] init];
-	[dateFormater setDateFormat:@"dd-MM-YYYY"];
+	[dateFormater setDateFormat:@"E, M/e/Y   hh:mm"];//hh:mm dd-MM-YYYY B"];
 	NSString *dateString = [dateFormater stringFromDate:anEvent.eventDate];
-	NSLog(@"anevent %@ string %@",[anEvent.eventDate class], dateString );
+	NSLog(@"anevent %@ string %@",anEvent.eventDate, dateString );
 	eventLabel.text = dateString;
 	UILabel *teamlabel = (UILabel*) [cell viewWithTag:3];
 	teamlabel.text = anEvent.oposingTeam;
@@ -291,10 +291,10 @@ NSLog(@"entered if %d", anEvent.eventDate);
 -(NSDate *) dateFromCustomString:(NSString *) dateString{
 	NSRange searchRange = NSMakeRange([dateString length] - 4 , 3);
 	dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0 range:searchRange];
-	dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "]; 
+	//dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "]; 
 	NSLog(@"datestring %@", dateString);
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
-	[df setDateFormat:@"YYYY-mm-dd HH:MM:SS Z"];
+	[df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
 	NSDate *myDate = [df dateFromString: dateString];
 	NSLog(@"date = %@ mydate %@",[df stringFromDate:[NSDate date]], myDate);
 	[df release];
