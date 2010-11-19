@@ -263,6 +263,7 @@ NSLog(@"entered if %d", anEvent.eventDate);
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"selected row");
     eventDetails = [[SMScheduleDetailedView alloc] initWithNibName:@"SMScheduleDetailedView" bundle:nil];
 	detailingEvent = [eventsArray objectAtIndex:indexPath.row];
 	eventDetails.event = detailingEvent;
