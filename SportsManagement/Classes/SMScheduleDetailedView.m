@@ -8,16 +8,20 @@
 
 #import "SMScheduleDetailedView.h"
 #import "CalendarEvent.h"
+#import "SMLoginViewController.h"
+#import <EventKit/EventKit.h>
 
 
 @implementation SMScheduleDetailedView
 
 @synthesize event;
+@synthesize eventDatelabel;
 @synthesize addLineOneLabel;
 @synthesize addCityLabel;
-@synthesize addStateLabel;
-@synthesize addZipLabel;
+@synthesize homeTeamLabel;
+@synthesize awayTeamLabel;
 @synthesize availSwitch;
+@synthesize venueNameLabel;
 
 
 
@@ -25,8 +29,7 @@
 -(void)viewWillAppear:(BOOL)animated{
 	NSLog(@"made it to the SMScheduleDetaledClass");
 	[super viewWillAppear:animated];
-	// self.addLineOneLabel.text = self.event.addLineOne;
-	
+		
 	NSLog(@"count %d", [[availSwitch subviews] count]);
 	NSLog(@"availSwitch is %@", availSwitch);
 	
@@ -40,61 +43,50 @@
         else   
             NSLog(@"No label subview found");;  
     }  
+	eventDatelabel.text = [event.eventDate dayDateTimeStringOutput];
+	homeTeamLabel.text = event.homeTeam;
+	awayTeamLabel.text = event.awayTeam;
+	venueNameLabel.text = [NSString stringWithFormat:@"@ %@",event.venueName];
+	addLineOneLabel.text = event.addLineOne;
+	addCityLabel.text = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
+	
+	
+	
+	
+}
+- (IBOutlet) pushedMapIt{
+	
+}
+- (IBOutlet) pushedAddToCalendar{
+	EKEventStore *eventStore = [[EKEventStore alloc] init];
+	EKEvent *newEvent = [EKEvent eventWithEventStore:eventStore];
+	
+	newEvent.title = [NSString stringWithFormat:@"%@ vs %@", event.awayTeam, event.homeTeam];
+	newEvent.startDate = event.eventDate;
+	
+	[newEvent setCalendar:[eventStore defaultCalendarForNewEvents]];
+	NSError *err;
+	[eventStore saveEvent:newEvent span:EKSpanThisEvent error:&err];
 	
 }
 - (void)loadView
 {
 	[super loadView];
-/**
-// Custom YES/NO
-switchView = [UISwitch switchWithLeftText:@"YES" andRight:@"NO"];
-//switchView.center = CGPointMake(160.0f, 60.0f);
-switchView.on = YES;
-[contentView addSubview:switchView];
- 
-**/
 }
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
+ 
     [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
-}
+   }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+ }
 
 
 - (void)dealloc {
     [super dealloc];
+	
 }
 
 

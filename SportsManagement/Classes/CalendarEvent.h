@@ -12,8 +12,10 @@
 @interface CalendarEvent : NSObject {
 	NSString *title;
 	NSDate *eventDate;
-	//NSString *time;
-	NSString *oposingTeam;
+	NSString *venueName;
+	NSString *homeTeam;
+	NSString *awayTeam;
+	NSString *venueID;
 	NSString *addLineOne;
 	NSString *addCity;
 	NSString *addState;
@@ -27,8 +29,10 @@
 
 - (id)initWithTitle:(NSString *)newTitle 
 		  eventDate:(NSDate *)newEventDate 
-			   //time:(NSString *)newTime
-		oposingTeam:(NSString *)newOpposingTeam
+		  venueName:(NSString *)newVenueName
+		   homeTeam:(NSString *)newHomeTeam
+		   awayTeam:(NSString *)newAwayTeam
+			venueID:(NSString *)newVenueID
 		 addLineOne:(NSString *)newAddLineOne
 			addCity:(NSString *)newAddCity
 		   addState:(NSString *)newAddState
@@ -40,8 +44,10 @@
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSDate *eventDate;
-//@property (nonatomic, retain) NSString *time;
-@property (nonatomic, retain) NSString *oposingTeam;
+@property (nonatomic, retain) NSString *venueName;
+@property (nonatomic, retain) NSString *homeTeam;
+@property (nonatomic, retain) NSString *awayTeam;
+@property (nonatomic, retain) NSString *venueID;
 @property (nonatomic, retain) NSString *addLineOne;
 @property (nonatomic, retain) NSString *addCity;
 @property (nonatomic, retain) NSString *addState;

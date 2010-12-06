@@ -9,12 +9,18 @@
 #import "SMScheduleViewController.h"
 //#import "CalendarEvent.h"
 #import "SMScheduleDetailedView.h"
+#import "SMLoginViewController.h"
 
 @implementation SMScheduleViewController
 
 @synthesize eventsArray;
+@synthesize venueArray;
+@synthesize teamArray;
 //@synthesize detailingEvent;
 @synthesize eventDetails;
+@synthesize venueDictionary;
+@synthesize teamDictionary;
+
 
 
 #pragma mark -
@@ -34,98 +40,87 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-#define GAMESURL @"http://nicsports.railsplayground.net/games.json"
-
-
+#define GAMESURL @"http://42.0.46.89:3000/games.json"//nicsports.railsplayground.net/games.json"
+#define VENUEURL @"http://42.0.46.89:3000/venues.json"//nicsports.railsplayground.net/venues.json"
+#define TEAMSURL @"http://42.0.46.89:3000/teams.json"//nicsports.railsplayground.net/teams.json"
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	
 	NSLog(@"View did Load");
+	pulledData = [[NSMutableData alloc] init];
+	pulledVenueData =[[NSMutableData alloc] init];
 	
-	self.eventsArray = [NSMutableArray array];
-	CalendarEvent *game = [[CalendarEvent alloc] initWithTitle:@"VS VTECH"
-						   
-													 eventDate:[self dateFromCustomString: @"2010-11-03T15:00:00-04:00"]
-														//  time:@"12:00"
-												   oposingTeam:@"Virginia Tech"
-													addLineOne:@"123 Main Street"
-													   addCity:@"noWhere"
-													  addState:@"Virginia"
-														addZip:@"22209"
-													  gameLocation:@"h"
-													 homeStats:@"50-0"
-													 awayStats:@"25-25"];
-						   
-	[eventsArray addObject:game];
-	[game release];
-/*	game = [[CalendarEvent alloc] initWithTitle:@"VS GMU" 
-									  eventDate:@"2010-12-10"
-								//		   time:@"12:30"
-									oposingTeam:@"Duke"
-									 addLineOne:@"123 Main Street"
-										addCity:@"noWhere"
-									   addState:@"Virginia"
-										 addZip:@"22209"
-									   gameLocation:@"h"
-									  homeStats:@"50-0"
-									  awayStats:@"25-25"];
-	
-	[eventsArray addObject:game];
-	[game release];
-	game = [[CalendarEvent alloc] initWithTitle:@"VS LSU"
-									  eventDate:@"2010-31-10"
-								//		   time:@"1:00"
-									oposingTeam:@"LSU"
-									 addLineOne:@"123 Main Street"
-										addCity:@"noWhere"
-									   addState:@"Virginia"
-										 addZip:@"22209"
-									   gameLocation:@"a"
-									  homeStats:@"50-0"
-									  awayStats:@"25-25"];
-	
-	[eventsArray addObject:game];
-	[game release];
-	game = [[CalendarEvent alloc] initWithTitle:@"VS NC State"
-									  eventDate:@"2010-12-10"
-								//		   time:@"1:30"
-									oposingTeam:@"NC State"
-									 addLineOne:@"123 Main Street"
-										addCity:@"noWhere"
-									   addState:@"Virginia"
-										 addZip:@"22209"
-									   gameLocation:@"a"
-									  homeStats:@"50-0"
-									  awayStats:@"25-25"];
-	
-	[eventsArray addObject:game];
-	[game release];
-	
-	
-/*	pulledData = [[NSMutableData alloc] init];
-	self.pulledResults = [NSArray array];
+	venueDictionary =[[NSMutableDictionary alloc] init];
+	teamDictionary = [[NSMutableDictionary alloc] init];
+	self.eventsArray = [NSArray array];
 	
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:GAMESURL]];
-	[NSURLConnection connectionWithRequest:request delegate:self];
-					  
+	gamesConnection = [[NSURLConnection connectionWithRequest:request delegate:self] retain];
 	
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	NSURLRequest *request2 = [NSURLRequest requestWithURL:[NSURL URLWithString:VENUEURL]];
+	venueConnection = [[NSURLConnection connectionWithRequest:request2 delegate:self] retain];
+	
+	NSURLRequest *request3 = [NSURLRequest requestWithURL:[NSURL URLWithString:VENUEURL]];
+	teamConnection = [[NSURLConnection connectionWithRequest:request3 delegate:self] retain];
+	
+	for (NSDictionary *venue in venueArray) {
+		NSString *key = [venue objectForKey:@"id"];
+		[venueDictionary setObject:venue forkey:key];
+	}
+	
+	for (NSDictionary *teams in teamArray) {
+		NSString *key = [teams objectForKey:@"id"];
+		[teamDictionary setObject:teams forkey:key];
+	}
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponce:(NSURLResponse *)responce{
-	[pulledData setLength:0];
-}
--(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-	[pulledData appendData:data];
-}
--(void) connectionDidFinishLoading:(NSURLConnection *)connection{
-	self.pulledResults = [pulledData yajl_JSON];
-	NSLog(@"results=%@", self.pulledResults);
-*/	
+	if (connection == gamesConnection){
+		[pulledData setLength:0];
+	}else if (connection ==venueConnection) {
+		[pulledVenueData setLength:0];
+	}else if (connection == teamConnection) {
+		[pulledTeamData setLength:0];
+	} 
+		
+	
+
 }
 
+-(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+	if (connection == gamesConnection) {
+		[pulledData appendData:data];
+	}else if (connection == venueConnection){
+		[pulledVenueData appendData:data];
+	}else if (connection == teamConnection) {
+		[pulledTeamData appendData:data];
+	}
+
+}
+
+-(void) connectionDidFinishLoading:(NSURLConnection *)connection{
+	if (connection == gamesConnection) {
+		self.eventsArray = [pulledData yajl_JSON];
+		NSLog(@"results=%@", self.eventsArray);
+	}else if (connection == venueConnection){
+		self.venueArray = [pulledVenueData yajl_JSON];
+		NSLog(@"venue results = %@", self.venueArray);
+	}else if (connection == teamConnection) {
+		self.teamArray = [pulledTeamData yajl_JSON];
+		NSLog(@"team tesults = %@", self.teamArray);
+	}
+
+	[self.tableView reloadData];
+	
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:challenge];
+[self presentModalViewController:vc animated:YES];
+[vc release];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -186,37 +181,67 @@
     }
     
     // Configure the cell...
-	CalendarEvent *anEvent = [eventsArray objectAtIndex:indexPath.row];
-	UILabel *titleLabel = (UILabel*)[cell viewWithTag:1];
-	titleLabel.text = anEvent.title;
-//	cell.textLabel.text = anEvent.title;
-	UILabel *eventLabel = (UILabel*) [cell viewWithTag:2];
-	NSDateFormatter* dateFormater = [[NSDateFormatter alloc] init];
-	[dateFormater setDateFormat:@"E, M/e/Y   hh:mm"];//hh:mm dd-MM-YYYY B"];
-	NSString *dateString = [dateFormater stringFromDate:anEvent.eventDate];
-	NSLog(@"anevent %@ string %@",anEvent.eventDate, dateString );
-	eventLabel.text = dateString;
-	UILabel *teamlabel = (UILabel*) [cell viewWithTag:3];
-	teamlabel.text = anEvent.oposingTeam;
-//	UILabel *timeLabel = (UILabel*) [cell viewWithTag:4];
-//	timeLabel.text = anEvent.time;
-	UIImageView *imageView = (UIImageView*) [cell viewWithTag:5];
-	if (anEvent.gameLocation == @"h") {
-		imageView.image = [UIImage imageNamed:@"home.tiff"];
-	}else {
-		imageView.image = [UIImage imageNamed:@"away.tiff"];
+	NSDictionary *data = [eventsArray objectAtIndex:indexPath.row];
+	CalendarEvent *anEvent = [[CalendarEvent alloc] init]; 
+	anEvent.title = [data objectForKey:@"id"];
+	anEvent.venueID = [data objectForKey:@"venue_id"];
+	//NSNumber *venueID = [[anEvent venueID] stringValue];
+	NSDictionary *venueDict = [venueArray objectAtIndex:[anEvent venueID]];
+	anEvent.venueName = [venueDict objectForKey:@"name"];
+	anEvent.addLineOne = [venueDict objectForKey:@"street_address"];
+	anEvent.addCity = [venueDict objectForKey:@"city"];
+	anEvent.addState = [venueDict objectForKey:@"state"];
+	anEvent.addZip = [venueDict objectForKey:@"zip"];
+//	titleLabel.text = [[data objectForKey:@"season_id"] stringValue];
+	NSArray *teams = [data objectForKey:@"games_teams"];
+	NSDictionary *team1 = [teams objectAtIndex:0];
+	NSDictionary *team2 = [teams objectAtIndex:1];
+	
+	if ([[team1 objectForKey:@"home_team"] boolValue]) {
+		//NSNumber *home = [team1 objectForKey:@"team_id"];
+		//NSNumber *away = [team2 objectForKey:@"team_id"];
+		anEvent.homeTeam = [team1 objectForKey:@"team_name"];
+		anEvent.awayTeam = [team2 objectForKey:@"team_name"];
+		
+	}else{
+		//NSNumber *home = [team2 objectForKey:@"team_id"];
+		//NSNumber *away = [team1 objectForKey:@"team_id"];
+		anEvent.homeTeam = [team2 objectForKey:@"team_name"];
+		anEvent.awayTeam = [team1 objectForKey:@"team_name"];
 	}
+	UILabel *awayLabel = (UILabel*)[cell viewWithTag:1];
+	awayLabel.text = anEvent.awayTeam;
+	UILabel *homeLabel = (UILabel*)[cell viewWithTag:3];
+	homeLabel.text = anEvent.homeTeam;
+	
+	anEvent.eventDate = [self dateFromCustomString: [data objectForKey:@"start_time"]];
+	//Date formatter
+	UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
+/*	NSDateFormatter* dateFormater = [[NSDateFormatter alloc] init];
+	[dateFormater setDateFormat:@"E, M/d/Y   hh:mm"];//hh:mm dd-MM-YYYY B"];
+	NSString *dateString = [dateFormater stringFromDate:anEvent.eventDate];
+	eventLabel.text = dateString;
+*/	//NSLog(@"anevent %@ string %@",anEvent.eventDate, dateString );
+	dateLabel.text = [anEvent.eventDate dayDateTimeStringOutput];
+	UIImageView *imageView = (UIImageView*) [cell viewWithTag:5];
+	if (anEvent.venueID == @"1") {
+		imageView.image = [UIImage imageNamed:@"home.png"];
+	}else {
+		imageView.image = [UIImage imageNamed:@"away.png"];
+	}
+	
 	UILabel *homeStatsLabel =(UILabel*) [cell viewWithTag:6];
 	homeStatsLabel.text = anEvent.homeStats;
 	UILabel *awayStatsLabel =(UILabel*) [cell viewWithTag:7];
 	awayStatsLabel.text = anEvent.awayStats;
-NSLog(@"entered if %d", anEvent.eventDate);
-
-//	cell.textLabel.text = 
-    
     return cell;
 }
 
+
+	
+	
+	
+	
 /*-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *) cell forRowAtIndexPath:(NSIndexPath *) indexPath{
 	cell.backgroundColor = (indexPath.row%2)?[UIColor whiteColor]:[UIColor grayColor];
 }*/
@@ -288,7 +313,7 @@ NSLog(@"entered if %d", anEvent.eventDate);
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 }
-
+/*
 -(NSDate *) dateFromCustomString:(NSString *) dateString{
 	NSRange searchRange = NSMakeRange([dateString length] - 4 , 3);
 	dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0 range:searchRange];
@@ -301,9 +326,12 @@ NSLog(@"entered if %d", anEvent.eventDate);
 	[df release];
 	return myDate;
 }
-
+*/
 - (void)dealloc {
     [super dealloc];
+	[gamesConnection release];
+	[venueConnection release];
+	[venueDictionary release];
 }
 
 

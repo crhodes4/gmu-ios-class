@@ -19,8 +19,10 @@
 		2FB1202412935DB300DCAB6B /* schedulecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB1202312935DB300DCAB6B /* schedulecell.xib */; };
 		2FD0F53A1293798E00BFB6F2 /* SMScheduleDetailedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD0F5381293798E00BFB6F2 /* SMScheduleDetailedView.m */; };
 		2FD0F53B1293798E00BFB6F2 /* SMScheduleDetailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FD0F5391293798E00BFB6F2 /* SMScheduleDetailedView.xib */; };
-		2FD0F60B12940D6700BFB6F2 /* away.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2FD0F60912940D6600BFB6F2 /* away.tiff */; };
-		2FD0F60C12940D6700BFB6F2 /* home.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2FD0F60A12940D6700BFB6F2 /* home.tiff */; };
+		2FEBFEAC12AD22E5006936A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBFEAB12AD22E5006936A4 /* Utilities.m */; };
+		2FEBFECC12AD28BB006936A4 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEBFECB12AD28BB006936A4 /* EventKit.framework */; };
+		2FEBFEE412AD394E006936A4 /* away.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FEBFEE212AD394E006936A4 /* away.png */; };
+		2FEBFEE512AD394E006936A4 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FEBFEE312AD394E006936A4 /* home.png */; };
 		3F6F8469128C8E0800C4CA02 /* scheduledetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6F8468128C8E0800C4CA02 /* scheduledetail.xib */; };
 		91094779128A228C00E20459 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91094778128A228C00E20459 /* YAJLIOS.framework */; };
 		9193B1631280DDBD00C1F08D /* Scores.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9193B1621280DDBD00C1F08D /* Scores.xib */; };
@@ -53,8 +55,11 @@
 		2FD0F5371293798E00BFB6F2 /* SMScheduleDetailedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMScheduleDetailedView.h; sourceTree = "<group>"; };
 		2FD0F5381293798E00BFB6F2 /* SMScheduleDetailedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMScheduleDetailedView.m; sourceTree = "<group>"; };
 		2FD0F5391293798E00BFB6F2 /* SMScheduleDetailedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SMScheduleDetailedView.xib; path = Classes/SMScheduleDetailedView.xib; sourceTree = "<group>"; };
-		2FD0F60912940D6600BFB6F2 /* away.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = away.tiff; path = Classes/away.tiff; sourceTree = "<group>"; };
-		2FD0F60A12940D6700BFB6F2 /* home.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = home.tiff; path = Classes/home.tiff; sourceTree = "<group>"; };
+		2FEBFEAA12AD22E5006936A4 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		2FEBFEAB12AD22E5006936A4 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		2FEBFECB12AD28BB006936A4 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		2FEBFEE212AD394E006936A4 /* away.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = away.png; sourceTree = "<group>"; };
+		2FEBFEE312AD394E006936A4 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3F6F8468128C8E0800C4CA02 /* scheduledetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = scheduledetail.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SportsManagement-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SportsManagement-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91094778128A228C00E20459 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
 				91094779128A228C00E20459 /* YAJLIOS.framework in Frameworks */,
+				2FEBFECC12AD28BB006936A4 /* EventKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +152,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FEBFECB12AD28BB006936A4 /* EventKit.framework */,
 				91094778128A228C00E20459 /* YAJLIOS.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -157,8 +164,8 @@
 		2FD0B3131295C94500EFFD7D /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				2FD0F60912940D6600BFB6F2 /* away.tiff */,
-				2FD0F60A12940D6700BFB6F2 /* home.tiff */,
+				2FEBFEE212AD394E006936A4 /* away.png */,
+				2FEBFEE312AD394E006936A4 /* home.png */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -195,6 +202,8 @@
 				9193B19A1280E42A00C1F08D /* CMTeamViewController.m */,
 				91CBD0801295BFCE00FAC9DC /* SMLoginViewController.h */,
 				91CBD0811295BFCE00FAC9DC /* SMLoginViewController.m */,
+				2FEBFEAA12AD22E5006936A4 /* Utilities.h */,
+				2FEBFEAB12AD22E5006936A4 /* Utilities.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -307,9 +316,9 @@
 				3F6F8469128C8E0800C4CA02 /* scheduledetail.xib in Resources */,
 				2FB1202412935DB300DCAB6B /* schedulecell.xib in Resources */,
 				2FD0F53B1293798E00BFB6F2 /* SMScheduleDetailedView.xib in Resources */,
-				2FD0F60B12940D6700BFB6F2 /* away.tiff in Resources */,
-				2FD0F60C12940D6700BFB6F2 /* home.tiff in Resources */,
 				91CBD0841295BFCE00FAC9DC /* Login.xib in Resources */,
+				2FEBFEE412AD394E006936A4 /* away.png in Resources */,
+				2FEBFEE512AD394E006936A4 /* home.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +340,7 @@
 				2F1D5771128CCCF400120751 /* CalendarEvent.m in Sources */,
 				2FD0F53A1293798E00BFB6F2 /* SMScheduleDetailedView.m in Sources */,
 				91CBD0831295BFCE00FAC9DC /* SMLoginViewController.m in Sources */,
+				2FEBFEAC12AD22E5006936A4 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

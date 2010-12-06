@@ -13,8 +13,10 @@
 
 @synthesize title;
 @synthesize eventDate;
-//@synthesize time;
-@synthesize oposingTeam;
+@synthesize venueName;
+@synthesize homeTeam;
+@synthesize awayTeam;
+@synthesize venueID;
 @synthesize addLineOne;
 @synthesize addCity;
 @synthesize addState;
@@ -27,8 +29,10 @@
 
 -(id)initWithTitle:(NSString *)newTitle 
 		 eventDate:(NSDate *)newEventDate 
-			//  time:(NSString *)newTime
-	   oposingTeam:(NSString *)newOpposingTeam
+		 venueName:(NSString *)newVenueName
+		  homeTeam:(NSString *)newHomeTeam
+		  awayTeam:(NSString *)newAwayTeam
+		   venueID:(NSString *)newVenueID
 		addLineOne:(NSString *)newAddLineOne
 		   addCity:(NSString *)newAddCity
 		  addState:(NSString *)newAddState
@@ -42,8 +46,10 @@
 		self.title = newTitle;
 		 
 		self.eventDate = newEventDate;
-		//self.time = newTime;
-		self.oposingTeam = newOpposingTeam;
+		self.venueName = newVenueName;
+		self.homeTeam = newHomeTeam;
+		self.awayTeam = newAwayTeam;
+		self.venueID - newVenueID;
 		self.addLineOne = newAddLineOne;
 		self.addCity = newAddCity;
 		self.addState = newAddState;
@@ -56,8 +62,10 @@
 -(void) dealloc {
 	[title release];
 	[eventDate release];
-//	[time release];
-	[oposingTeam release];
+	[venueName release];
+	[homeTeam release];
+	[awayTeam release];
+	[venueID release];
 	[addLineOne release];
 	[addCity release];
 	[addState release];

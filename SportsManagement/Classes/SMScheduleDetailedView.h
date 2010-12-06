@@ -9,22 +9,33 @@
 #import <UIKit/UIKit.h>
 @class CalendarEvent;
 @class SMScheduleDetailedView;
+@class SMLoginViewController;
 
 @interface SMScheduleDetailedView : UIViewController {
-
+	UILabel *eventDatelabel;
 	UILabel *addLineOneLabel;
 	UILabel *addCityLabel;
-	UILabel *addStateLabel;
-	UILabel *addZipLabel;
+	UILabel *homeTeamLabel;
+	UILabel *awayTeamLabel;
+	UILabel *venueNameLabel;
 	CalendarEvent *event;
 	UISwitch *availSwitch;
+	UIButton *addToCalendar;
+	UIButton *mapIt;
 }
 
+- (IBOutlet) pushedMapIt;
+- (IBOutlet) pushedAddToCalendar;
+
 @property (nonatomic, retain) CalendarEvent *event;
+@property (nonatomic, retain) IBOutlet UILabel *eventDatelabel;
 @property (nonatomic, retain) IBOutlet UILabel *addLineOneLabel;
 @property (nonatomic, retain) IBOutlet UILabel *addCityLabel;
-@property (nonatomic, retain) IBOutlet UILabel *addStateLabel;
-@property (nonatomic, retain) IBOutlet UILabel *addZipLabel;
+@property (nonatomic, retain) IBOutlet UILabel *venueNameLabel;
 @property (nonatomic, retain) IBOutlet UISwitch *availSwitch;
+@property (nonatomic, retain) IBOutlet UIButton *mapIt;
+@property (nonatomic, retain) IBOutlet UIButton *addToCalendar;
+@property (nonatomic, retain) IBOutlet UILabel *homeTeamLabel;
+@property (nonatomic, retain) IBOutlet UILabel *awayTeamLabel;
 
 @end
