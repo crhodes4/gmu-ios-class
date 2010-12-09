@@ -10,6 +10,7 @@
 #import "CalendarEvent.h"
 #import "SMLoginViewController.h"
 #import <EventKit/EventKit.h>
+#import "Utilities.h"
 
 
 @implementation SMScheduleDetailedView
@@ -43,7 +44,7 @@
         else   
             NSLog(@"No label subview found");;  
     }  
-	eventDatelabel.text = [event.eventDate dayDateTimeStringOutput];
+	eventDatelabel.text = [Utilities dayDateTimeStringOutput:event.eventDate ];
 	homeTeamLabel.text = event.homeTeam;
 	awayTeamLabel.text = event.awayTeam;
 	venueNameLabel.text = [NSString stringWithFormat:@"@ %@",event.venueName];
@@ -57,7 +58,7 @@
 - (IBOutlet) pushedMapIt{
 	
 }
-- (IBOutlet) pushedAddToCalendar{
+- (IBAction) pushedAddToCalendar{
 	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	EKEvent *newEvent = [EKEvent eventWithEventStore:eventStore];
 	

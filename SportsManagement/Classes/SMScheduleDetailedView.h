@@ -25,7 +25,7 @@
 }
 
 - (IBOutlet) pushedMapIt;
-- (IBOutlet) pushedAddToCalendar;
+- (IBAction) pushedAddToCalendar;
 
 @property (nonatomic, retain) CalendarEvent *event;
 @property (nonatomic, retain) IBOutlet UILabel *eventDatelabel;
