@@ -54,7 +54,14 @@
 	
 	
 }
-- (IBOutlet) pushedMapIt{
+- (void) pushedMapIt: (id) sender { 
+	
+	NSString *theAddress = @"1600 Pennsylvania Ave NW Washington D.C., DC 20500";
+	NSString *aTitle = @"a title";
+	NSString *aSubtitle = @"a subtitle";
+	
+	
+	
 	
 }
 - (IBOutlet) pushedAddToCalendar{
