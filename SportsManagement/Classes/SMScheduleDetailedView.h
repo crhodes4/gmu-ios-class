@@ -26,8 +26,11 @@
 	UILabel *awayScoreLabel;
 }
 
-- (IBOutlet) pushedMapIt;
+
+- (IBAction) pushedMapIt: (id) sender;
+
 - (IBAction) pushedAddToCalendar;
+
 
 @property (nonatomic, retain) CalendarEvent *event;
 @property (nonatomic, retain) IBOutlet UILabel *eventDatelabel;
@@ -35,7 +38,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *addCityLabel;
 @property (nonatomic, retain) IBOutlet UILabel *venueNameLabel;
 @property (nonatomic, retain) IBOutlet UISwitch *availSwitch;
-@property (nonatomic, retain) IBOutlet UIButton *mapIt;
+//@property (nonatomic, retain) IBAction UIButton *mapIt;
 @property (nonatomic, retain) IBOutlet UIButton *addToCalendar;
 @property (nonatomic, retain) IBOutlet UILabel *homeTeamLabel;
 @property (nonatomic, retain) IBOutlet UILabel *awayTeamLabel;

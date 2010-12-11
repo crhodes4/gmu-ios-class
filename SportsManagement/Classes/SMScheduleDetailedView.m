@@ -11,6 +11,7 @@
 #import "SMLoginViewController.h"
 #import <EventKit/EventKit.h>
 #import "Utilities.h"
+#import "MapKitDisplayViewController.h"
 
 
 @implementation SMScheduleDetailedView
@@ -66,7 +67,16 @@
 	
 	
 }
-- (IBOutlet) pushedMapIt{
+- (void) pushedMapIt: (id) sender { 
+
+	//NSString *theAddress = @"1600 Pennsylvania Ave NW Washington D.C., DC 20500";
+	//NSString *aTitle = @"a title";
+	//NSString *aSubtitle = @"a subtitle";
+	
+	MapKitDisplayViewController *maps = [[MapKitDisplayViewController alloc] init];
+	// set var
+	[self.navigationController pushViewController:maps animated:YES];
+	[maps release];
 	
 }
 - (IBAction) pushedAddToCalendar{

@@ -44,6 +44,11 @@
 	teamDictionary = [[NSMutableDictionary alloc] init];
 	eventsArray = [[NSMutableArray alloc] init];
 	self.teamArray = [NSArray array];
+	NSLog(@"viewdidload");
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:GAMESURL]];
 	gamesConnection = [[NSURLConnection connectionWithRequest:request delegate:self] retain];
 	
@@ -52,8 +57,11 @@
 	
 	NSURLRequest *request3 = [NSURLRequest requestWithURL:[NSURL URLWithString:TEAMSURL]];
 	teamConnection = [[NSURLConnection connectionWithRequest:request3 delegate:self] retain];
+
 	//NSLog(@"teamConnection = %@", teamConnection);
 	
+	NSLog(@"teamConnection = %@", teamConnection);
+
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponce:(NSURLResponse *)responce{
@@ -172,9 +180,20 @@
 	NSLog(@"error = %@", error);
 }
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+
 	SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:challenge];
 	[self presentModalViewController:vc animated:YES];
 	[vc release];
+	NSLog(@"showing login %@", self.modalViewController);
+	if (self.modalViewController == nil) {
+		NSLog(@"showing login view");
+		SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:challenge];
+		[self presentModalViewController:vc animated:YES];
+		[vc release];
+	} else {
+		[connection cancel];
+	}
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
