@@ -353,6 +353,22 @@
 					</object>
 					<int key="connectionID">30</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">awayScoreLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="774112926"/>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">homeScoreLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="775868554"/>
+					</object>
+					<int key="connectionID">32</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -553,7 +569,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -580,8 +596,10 @@
 							<string>addLineOneLabel</string>
 							<string>addToCalendar</string>
 							<string>availSwitch</string>
+							<string>awayScoreLabel</string>
 							<string>awayTeamLabel</string>
 							<string>eventDatelabel</string>
+							<string>homeScoreLabel</string>
 							<string>homeTeamLabel</string>
 							<string>mapIt</string>
 							<string>venueNameLabel</string>
@@ -592,6 +610,8 @@
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UISwitch</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -607,8 +627,10 @@
 							<string>addLineOneLabel</string>
 							<string>addToCalendar</string>
 							<string>availSwitch</string>
+							<string>awayScoreLabel</string>
 							<string>awayTeamLabel</string>
 							<string>eventDatelabel</string>
+							<string>homeScoreLabel</string>
 							<string>homeTeamLabel</string>
 							<string>mapIt</string>
 							<string>venueNameLabel</string>
@@ -632,11 +654,19 @@
 								<string key="candidateClassName">UISwitch</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">awayScoreLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">awayTeamLabel</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">eventDatelabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">homeScoreLabel</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">

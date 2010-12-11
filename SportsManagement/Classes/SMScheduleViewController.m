@@ -18,27 +18,12 @@
 @synthesize venueArray;
 @synthesize teamArray;
 @synthesize gamesArray;
-//@synthesize detailingEvent;
 @synthesize eventDetails;
 @synthesize venueDictionary;
 @synthesize teamDictionary;
 @synthesize gamesDictionary;
 
 
-
-#pragma mark -
-#pragma mark Initialization
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
 
 
 #pragma mark -
@@ -67,7 +52,7 @@
 	
 	NSURLRequest *request3 = [NSURLRequest requestWithURL:[NSURL URLWithString:TEAMSURL]];
 	teamConnection = [[NSURLConnection connectionWithRequest:request3 delegate:self] retain];
-	NSLog(@"teamConnection = %@", teamConnection);
+	//NSLog(@"teamConnection = %@", teamConnection);
 	
 }
 
@@ -98,7 +83,7 @@
 -(void) connectionDidFinishLoading:(NSURLConnection *)connection{
 	if (connection == gamesConnection) {
 		self.gamesArray = [pulledData yajl_JSON];
-		NSLog(@"results=%@", self.gamesArray);
+		//NSLog(@"results=%@", self.gamesArray);
 	}else if (connection == venueConnection){
 		self.venueArray = [pulledVenueData yajl_JSON];
 		for (NSDictionary *venue in venueArray) {
@@ -106,10 +91,10 @@
 			[venueDictionary setObject:venue forKey:key];
 		}
 		
-		NSLog(@"venue results = %@", self.venueDictionary);
+	//	NSLog(@"venue results = %@", self.venueDictionary);
 	}else if (connection == teamConnection) {
 		self.teamArray = [pulledTeamData yajl_JSON];
-		NSLog(@"team tesults = %@ %u", teamArray, [pulledTeamData length]);
+	//	NSLog(@"team tesults = %@ %u", teamArray, [pulledTeamData length]);
 	
 		for (NSDictionary *teams in teamArray) {
 			NSString *key = [teams objectForKey:@"id"];
@@ -119,42 +104,60 @@
 	if ([gamesArray count] != 0 && [teamArray count] != 0 && [venueArray count] !=0 ) {
 		for (NSDictionary *games in gamesArray) {
 			NSNumber *gameId = [games valueForKey:@"id"];
-			NSNumber *venueId = [games valueForKey:@"venue_id"];
+			NSNumber *localVenueId = [games valueForKey:@"venue_id"];
+			NSLog(@"localVenueID = %@", localVenueId);
 			NSDate *gameStart = [Utilities dateFromCustomString:[games valueForKey:@"start_time"]];
 			NSArray *teams = [games objectForKey:@"games_teams"];
 			NSDictionary *team1 = [teams objectAtIndex:0];
 			NSDictionary *team2 = [teams objectAtIndex:1];
 			NSNumber *home = 0;
 			NSNumber *away = 0;
+			NSString *homeScore1 = 0;
+			NSString *awayScore1 = 0;
 			if ([[team1 objectForKey:@"home_team"] boolValue]) {
 				home = [team1 valueForKey:@"team_id"];
 				away = [team2 valueForKey:@"team_id"];
+				if ([team1 valueForKey:@"score"] || [team2 valueForKey:@"score"]) {
+					homeScore1 = [team1 valueForKey:@"score"];
+					awayScore1 = [team2 valueForKey:@"score"];
+				}else {
+					homeScore1 = nil;
+					awayScore1 = nil;
+				}
+
+				
+				
 				
 			}else{
 				home = [team2 valueForKey:@"team_id"];
+				homeScore1 = [team2 valueForKey:@"score"];
 				away = [team1 valueForKey:@"team_id"];
+				awayScore1 = [team1 valueForKey:@"score"];
 			}
 			NSString *homeTeamName = [[teamDictionary objectForKey:home] valueForKey:@"name"];
 			NSString *awayTeamName = [[teamDictionary objectForKey:away] valueForKey:@"name"];
-			NSString *venueName = [[venueDictionary objectForKey:venueId] valueForKey:@"name"];
-			NSString *venueAdd = [[venueDictionary objectForKey:venueId] valueForKey:@"street_address"];
-			NSString *venueCity = [[venueDictionary objectForKey:venueId] valueForKey:@"city"];
-			NSString *venueState = [[venueDictionary objectForKey:venueId] valueForKey:@"state"];
-			NSString *venueZip = [[venueDictionary objectForKey:venueId] valueForKey:@"zip"];
+			
+			NSString *venueName = [[venueDictionary objectForKey:localVenueId] valueForKey:@"name"];
+			NSString *venueAdd = [[venueDictionary objectForKey:localVenueId] valueForKey:@"street_address"];
+			NSString *venueCity = [[venueDictionary objectForKey:localVenueId] valueForKey:@"city"];
+			NSString *venueState = [[venueDictionary objectForKey:localVenueId] valueForKey:@"state"];
+			NSString *venueZip = [[venueDictionary objectForKey:localVenueId] valueForKey:@"zip"];
 			CalendarEvent *anEvent = [[CalendarEvent alloc] initWithTitle:gameId
 																eventDate:gameStart
 																venueName:venueName
 																 homeTeam:homeTeamName
 																 awayTeam:awayTeamName
-																  venueID:venueId
+																  venueID:localVenueId
 															   addLineOne:venueAdd
 																  addCity:venueCity
 																 addState:venueState
 																   addZip:venueZip
+																homeScore:homeScore1
+																awayScore:awayScore1
 																homeStats:@"0-1"
 																awayStats:@"1-0"];
-			NSLog(@"events array = %@", [eventsArray class]);
-			NSLog(@"calenderevent = %@", anEvent);
+			
+			NSLog(@"event = %@", anEvent.venueID);
 			[eventsArray addObject:anEvent];
 			[anEvent release];
 		}
@@ -169,70 +172,41 @@
 	NSLog(@"error = %@", error);
 }
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:challenge];
-[self presentModalViewController:vc animated:YES];
-[vc release];
+	SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:challenge];
+	[self presentModalViewController:vc animated:YES];
+	[vc release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	//[self.tableView reloadData];
+	
 }
-
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return [eventsArray count];
 }
 
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-    //    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		
 		[[NSBundle mainBundle] loadNibNamed:@"schedulecell" owner:self options:NULL];
 		cell = nibLoadedCell;
     }
-    
-    // Configure the cell...
 	CalendarEvent *currentEvent = [eventsArray objectAtIndex:indexPath.row];
 	UILabel *dateLabel = (UILabel*) [cell viewWithTag:2];
 	dateLabel.text = [Utilities dayDateTimeStringOutput:[currentEvent eventDate]];
@@ -240,56 +214,25 @@ SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:cha
 	awayLabel.text = currentEvent.awayTeam;
 	UILabel *homeLabel = (UILabel*)[cell viewWithTag:3];
 	homeLabel.text = currentEvent.homeTeam;
-	NSLog(@"home team = %@", currentEvent.homeTeam);
-    return cell;
+	UIImageView *imageView = (UIImageView*) [cell viewWithTag:6];
+	NSLog(@"venueID = %@", currentEvent.venueID );
+	if ([currentEvent.venueID nonretainedObjectValue] <= 1) {
+		imageView.image = [UIImage imageNamed:@"home.png"];
+	}else {
+		imageView.image = [UIImage imageNamed:@"away.png"];
+	}
+	UILabel *homeStatsLabel = (UILabel*)[cell viewWithTag:4];
+	homeStatsLabel.text = currentEvent.homeStats;
+	UILabel *awayStatsLabel = (UILabel*)[cell viewWithTag:5];
+	awayStatsLabel.text = currentEvent.awayStats;
+	return cell;
+	
 }
 
 
-	
-	
-	
-	
-/*-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *) cell forRowAtIndexPath:(NSIndexPath *) indexPath{
-	cell.backgroundColor = (indexPath.row%2)?[UIColor whiteColor]:[UIColor grayColor];
-}*/
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view delegate
@@ -299,7 +242,6 @@ SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:cha
     eventDetails = [[SMScheduleDetailedView alloc] initWithNibName:@"SMScheduleDetailedView" bundle:nil];
 	detailingEvent = [eventsArray objectAtIndex:indexPath.row];
 	eventDetails.event = detailingEvent;
-//	NSLog(@"view controller = %d Event %d", eventDetails.event, detailingEvent);
     [self.navigationController pushViewController:eventDetails animated:YES];
     
 
@@ -310,35 +252,26 @@ SMLoginViewController *vc = [[SMLoginViewController alloc] initWithChallenge:cha
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
-    // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 }
 
-/*-(NSDate *) dateFromCustomString:(NSString *) dateString{
-	NSRange searchRange = NSMakeRange([dateString length] - 4 , 3);
-	dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0 range:searchRange];
-	//dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "]; 
-	NSLog(@"datestring %@", dateString);
-	NSDateFormatter *df = [[NSDateFormatter alloc] init];
-	[df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
-	NSDate *myDate = [df dateFromString: dateString];
-	NSLog(@"date = %@ mydate %@",[df stringFromDate:[NSDate date]], myDate);
-	[df release];
-	return myDate;
-}
-*/
 - (void)dealloc {
     [super dealloc];
 	[gamesConnection release];
 	[venueConnection release];
 	[venueDictionary release];
+	[pulledData release];
+	[pulledVenueData release];
+	[pulledTeamData release];
+	[venueDictionary release];
+	[teamDictionary release];
+	[eventsArray release];
+	[teamArray release];
+	
 }
 
 

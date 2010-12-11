@@ -21,11 +21,11 @@
 @synthesize addCity;
 @synthesize addState;
 @synthesize addZip;
-
+@synthesize homeScore;
+@synthesize awayScore;
 @synthesize homeStats;
 @synthesize awayStats;
 
-//@synthesize playerAvailable;
 
 -(id)initWithTitle:(NSNumber *)newTitle 
 		 eventDate:(NSDate *)newEventDate 
@@ -37,6 +37,8 @@
 		   addCity:(NSString *)newAddCity
 		  addState:(NSString *)newAddState
 			addZip:(NSString *)newAddZip
+		 homeScore:(NSNumber*)newHomeScore
+		 awayScore:(NSNumber *)newAwayScore
 
 		 homeStats:(NSString *)newHomeStats
 		 awayStats:(NSString *)newAwayStats{
@@ -49,12 +51,13 @@
 		self.venueName = newVenueName;
 		self.homeTeam = newHomeTeam;
 		self.awayTeam = newAwayTeam;
-		self.venueID - newVenueID;
+		self.venueID = newVenueID;
 		self.addLineOne = newAddLineOne;
 		self.addCity = newAddCity;
 		self.addState = newAddState;
 		self.addZip = newAddZip;
-	
+		self.homeScore = newHomeScore;
+		self.awayScore = newAwayScore;
 		self.homeStats = newHomeStats;
 		self.awayStats = newAwayStats;
 	} return self;
@@ -70,7 +73,8 @@
 	[addCity release];
 	[addState release];
 	[addZip release];
-
+	[homeScore release];
+	[awayScore release];
 	[homeStats release];
 	[awayStats release];
 	[super dealloc];

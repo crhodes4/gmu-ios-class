@@ -23,12 +23,14 @@
 @synthesize awayTeamLabel;
 @synthesize availSwitch;
 @synthesize venueNameLabel;
+@synthesize homeScoreLabel;
+@synthesize awayScoreLabel;
 
 
 
 
 -(void)viewWillAppear:(BOOL)animated{
-	NSLog(@"made it to the SMScheduleDetaledClass");
+	
 	[super viewWillAppear:animated];
 		
 	NSLog(@"count %d", [[availSwitch subviews] count]);
@@ -50,7 +52,16 @@
 	venueNameLabel.text = [NSString stringWithFormat:@"@ %@",event.venueName];
 	addLineOneLabel.text = event.addLineOne;
 	addCityLabel.text = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
-	
+	NSLog(@"homeScore = %@", event.homeScore);
+	if (event.homeScore == [NSNull null]) {
+		homeScoreLabel.text = @"";
+		awayScoreLabel.text = @"";
+	}else {
+		homeScoreLabel.text = [event.homeScore stringValue];
+		awayScoreLabel.text = [event.awayScore stringValue];
+	}
+
+		
 	
 	
 	
@@ -59,6 +70,7 @@
 	
 }
 - (IBAction) pushedAddToCalendar{
+	NSLog(@"Made it to function");
 	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	EKEvent *newEvent = [EKEvent eventWithEventStore:eventStore];
 	

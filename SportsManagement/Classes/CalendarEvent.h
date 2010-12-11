@@ -20,7 +20,8 @@
 	NSString *addCity;
 	NSString *addState;
 	NSString *addZip;
-
+	NSNumber *homeScore;
+	NSNumber *awayScore;
 	NSString *homeStats;
 	NSString *awayStats;
 	
@@ -37,16 +38,19 @@
 			addCity:(NSString *)newAddCity
 		   addState:(NSString *)newAddState
 			 addZip:(NSString *)newAddZip
+		  homeScore:(NSNumber *)newHomeScore
+		  awayScore:(NSNumber *)newAwayScore
 	
 		  homeStats:(NSString *)newHomeStats
 		  awayStats:(NSString *)newAwayStats;
-	//playerAvailable:(BOOL *)newPlayerAvailable;
 
 @property (nonatomic, retain) NSNumber *title;
 @property (nonatomic, retain) NSDate *eventDate;
 @property (nonatomic, retain) NSString *venueName;
 @property (nonatomic, retain) NSString *homeTeam;
 @property (nonatomic, retain) NSString *awayTeam;
+@property (nonatomic, retain) NSNumber *homeScore;
+@property (nonatomic, retain) NSNumber *awayScore;
 @property (nonatomic, retain) NSNumber *venueID;
 @property (nonatomic, retain) NSString *addLineOne;
 @property (nonatomic, retain) NSString *addCity;
@@ -54,7 +58,6 @@
 @property (nonatomic, retain) NSString *addZip;
 @property (nonatomic, retain) NSString *homeStats;
 @property (nonatomic, retain) NSString *awayStats;
-//@property (nonatomic, ) BOOL *playerAvailable;
 
 
 

@@ -22,6 +22,8 @@
 	UISwitch *availSwitch;
 	UIButton *addToCalendar;
 	UIButton *mapIt;
+	UILabel *homeScoreLabel;
+	UILabel *awayScoreLabel;
 }
 
 - (IBOutlet) pushedMapIt;
@@ -37,5 +39,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *addToCalendar;
 @property (nonatomic, retain) IBOutlet UILabel *homeTeamLabel;
 @property (nonatomic, retain) IBOutlet UILabel *awayTeamLabel;
+@property (nonatomic, retain) IBOutlet UILabel *homeScoreLabel;
+@property (nonatomic, retain) IBOutlet UILabel *awayScoreLabel;
 
 @end
