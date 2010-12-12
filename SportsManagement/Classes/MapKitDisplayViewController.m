@@ -5,6 +5,7 @@
 
 #import "MapKitDisplayViewController.h"
 #import "DisplayMap.h"
+#import "SMScheduleDetailedView.h" 
 
 @implementation MapKitDisplayViewController
 

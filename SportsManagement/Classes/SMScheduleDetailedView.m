@@ -68,13 +68,18 @@
 	
 }
 - (void) pushedMapIt: (id) sender { 
-
-	//NSString *theAddress = @"1600 Pennsylvania Ave NW Washington D.C., DC 20500";
-	//NSString *aTitle = @"a title";
-	//NSString *aSubtitle = @"a subtitle";
+  
+	NSString *venueAdd1 = event.addLineOne;
+	NSLog(@"venueAdd1 = %@", venueAdd1);
+	NSString *venueAdd2 = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
+	NSLog(@"venueAdd2 = %@", venueAdd2);
+	NSString *venueAdd = [NSString stringWithFormat:@"%@ %@", venueAdd1, venueAdd2];
+	NSLog(@"venueAdd = %@", venueAdd);
 	
+	NSLog(@"Made it to pushedMapIt");
 	MapKitDisplayViewController *maps = [[MapKitDisplayViewController alloc] init];
 	// set var
+	
 	[self.navigationController pushViewController:maps animated:YES];
 	[maps release];
 	
