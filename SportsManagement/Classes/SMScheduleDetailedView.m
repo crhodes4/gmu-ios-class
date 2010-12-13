@@ -53,7 +53,6 @@
 	venueNameLabel.text = [NSString stringWithFormat:@"@ %@",event.venueName];
 	addLineOneLabel.text = event.addLineOne;
 	addCityLabel.text = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
-	NSLog(@"homeScore = %@", event.homeScore);
 	if (event.homeScore == [NSNull null]) {
 		homeScoreLabel.text = @"";
 		awayScoreLabel.text = @"";
@@ -68,19 +67,12 @@
 	
 }
 - (void) pushedMapIt: (id) sender { 
-
-	//NSString *theAddress = @"1600 Pennsylvania Ave NW Washington D.C., DC 20500";
-	//NSString *aTitle = @"a title";
-	//NSString *aSubtitle = @"a subtitle";
-	
-	MapKitDisplayViewController *maps = [[MapKitDisplayViewController alloc] init];
-	// set var
-	[self.navigationController pushViewController:maps animated:YES];
-	[maps release];
+	mapEvent = [[MapKitDisplayViewController alloc] initWithNibName:@"MapKitDisplayViewController" bundle:nil];
+	mapEvent.mapEvents = event;
+	[self.navigationController pushViewController:mapEvent animated:YES];
 	
 }
 - (IBAction) pushedAddToCalendar{
-	NSLog(@"Made it to function");
 	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	EKEvent *newEvent = [EKEvent eventWithEventStore:eventStore];
 	

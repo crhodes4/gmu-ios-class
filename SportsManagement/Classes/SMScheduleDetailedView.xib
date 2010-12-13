@@ -134,7 +134,7 @@
 					<object class="IBUILabel" id="320178728">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{60, 162}, {88, 21}}</string>
+						<string key="NSFrame">{{60, 162}, {237, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -282,22 +282,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">addLineOneLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="598732636"/>
-					</object>
-					<int key="connectionID">5</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">addCityLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="361233473"/>
-					</object>
-					<int key="connectionID">9</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">availSwitch</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="1040995725"/>
@@ -338,19 +322,61 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">mapIt</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="230075205"/>
-					</object>
-					<int key="connectionID">26</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">venueNameLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="320178728"/>
 					</object>
 					<int key="connectionID">27</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pushedMapIt:</string>
+						<reference key="source" ref="230075205"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">homeScoreLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="775868554"/>
+					</object>
+					<int key="connectionID">29</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">awayScoreLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="774112926"/>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">pushedAddToCalendar</string>
+						<reference key="source" ref="91535244"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addLineOneLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="545225245"/>
+					</object>
+					<int key="connectionID">33</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addCityLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="465253735"/>
+					</object>
+					<int key="connectionID">34</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -552,7 +578,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">27</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -560,6 +586,38 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">SMScheduleDetailedView</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>pushedAddToCalendar</string>
+							<string>pushedMapIt:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>pushedAddToCalendar</string>
+							<string>pushedMapIt:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">pushedAddToCalendar</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">pushedMapIt:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -568,10 +626,11 @@
 							<string>addLineOneLabel</string>
 							<string>addToCalendar</string>
 							<string>availSwitch</string>
+							<string>awayScoreLabel</string>
 							<string>awayTeamLabel</string>
 							<string>eventDatelabel</string>
+							<string>homeScoreLabel</string>
 							<string>homeTeamLabel</string>
-							<string>mapIt</string>
 							<string>venueNameLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -583,7 +642,8 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
-							<string>UIButton</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -595,10 +655,11 @@
 							<string>addLineOneLabel</string>
 							<string>addToCalendar</string>
 							<string>availSwitch</string>
+							<string>awayScoreLabel</string>
 							<string>awayTeamLabel</string>
 							<string>eventDatelabel</string>
+							<string>homeScoreLabel</string>
 							<string>homeTeamLabel</string>
-							<string>mapIt</string>
 							<string>venueNameLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -620,6 +681,10 @@
 								<string key="candidateClassName">UISwitch</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">awayScoreLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">awayTeamLabel</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
@@ -628,12 +693,12 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">homeTeamLabel</string>
+								<string key="name">homeScoreLabel</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">mapIt</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="name">homeTeamLabel</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">venueNameLabel</string>

@@ -36,7 +36,7 @@
     [super viewDidLoad];
 
 	
-	NSLog(@"View did Load");
+	
 	pulledData = [[NSMutableData alloc] init];
 	pulledVenueData =[[NSMutableData alloc] init];
 	pulledTeamData = [[NSMutableData alloc] init];
@@ -44,7 +44,7 @@
 	teamDictionary = [[NSMutableDictionary alloc] init];
 	eventsArray = [[NSMutableArray alloc] init];
 	self.teamArray = [NSArray array];
-	NSLog(@"viewdidload");
+	
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,10 +57,6 @@
 	
 	NSURLRequest *request3 = [NSURLRequest requestWithURL:[NSURL URLWithString:TEAMSURL]];
 	teamConnection = [[NSURLConnection connectionWithRequest:request3 delegate:self] retain];
-
-	//NSLog(@"teamConnection = %@", teamConnection);
-	
-	NSLog(@"teamConnection = %@", teamConnection);
 
 }
 
@@ -91,18 +87,16 @@
 -(void) connectionDidFinishLoading:(NSURLConnection *)connection{
 	if (connection == gamesConnection) {
 		self.gamesArray = [pulledData yajl_JSON];
-		//NSLog(@"results=%@", self.gamesArray);
+		
 	}else if (connection == venueConnection){
 		self.venueArray = [pulledVenueData yajl_JSON];
 		for (NSDictionary *venue in venueArray) {
 			NSString *key = [venue objectForKey:@"id"];
 			[venueDictionary setObject:venue forKey:key];
 		}
-		
-	//	NSLog(@"venue results = %@", self.venueDictionary);
 	}else if (connection == teamConnection) {
 		self.teamArray = [pulledTeamData yajl_JSON];
-	//	NSLog(@"team tesults = %@ %u", teamArray, [pulledTeamData length]);
+	
 	
 		for (NSDictionary *teams in teamArray) {
 			NSString *key = [teams objectForKey:@"id"];
@@ -113,7 +107,6 @@
 		for (NSDictionary *games in gamesArray) {
 			NSNumber *gameId = [games valueForKey:@"id"];
 			NSNumber *localVenueId = [games valueForKey:@"venue_id"];
-			NSLog(@"localVenueID = %@", localVenueId);
 			NSDate *gameStart = [Utilities dateFromCustomString:[games valueForKey:@"start_time"]];
 			NSArray *teams = [games objectForKey:@"games_teams"];
 			NSDictionary *team1 = [teams objectAtIndex:0];
@@ -165,7 +158,6 @@
 																homeStats:@"0-1"
 																awayStats:@"1-0"];
 			
-			NSLog(@"event = %@", anEvent.venueID);
 			[eventsArray addObject:anEvent];
 			[anEvent release];
 		}
@@ -234,7 +226,6 @@
 	UILabel *homeLabel = (UILabel*)[cell viewWithTag:3];
 	homeLabel.text = currentEvent.homeTeam;
 	UIImageView *imageView = (UIImageView*) [cell viewWithTag:6];
-	NSLog(@"venueID = %@", currentEvent.venueID );
 	if ([currentEvent.venueID nonretainedObjectValue] <= 1) {
 		imageView.image = [UIImage imageNamed:@"home.png"];
 	}else {

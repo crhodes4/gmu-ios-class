@@ -5,37 +5,23 @@
 
 #import "MapKitDisplayViewController.h"
 #import "DisplayMap.h"
+#import "CalendarEvent.h"
+#import "SMScheduleDetailedView.h"
 
 @implementation MapKitDisplayViewController
 
 @synthesize mapView;
+@synthesize mapEvents;
 
-
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSString *temp = mapEvents.addZip;
 	
-	NSString *theAddress = @"1600 Pennsylvania Ave NW Washington D.C., DC 20500";
-	NSString *aTitle = @"a title";
-	NSString *aSubtitle = @"a subtitle";
+	
+	NSString *theAddress = [NSString stringWithFormat:@"%@ %@ %@, %@", mapEvents.addLineOne, mapEvents.addCity, mapEvents.addState, mapEvents.addZip]; 
+	
+	NSString *aTitle = mapEvents.venueName;
+
 	
 	
 	NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
@@ -46,10 +32,7 @@
 	
     NSArray *listItems = [locationString componentsSeparatedByString:@","];
 	
-	NSLog(@"location: %@", urlString);
-	
-	NSLog(@"locationString: %@", locationString);
-		
+			
 	NSString *latS = [listItems objectAtIndex:2];
 	
 	float lat = [latS floatValue];
@@ -77,7 +60,7 @@
 	
 	DisplayMap *ann = [[DisplayMap alloc] init]; 
 	ann.title = aTitle;
-	ann.subtitle = aSubtitle; 
+
 	ann.coordinate = region.center; 
 	[mapView addAnnotation:ann];
 }
@@ -105,23 +88,19 @@
 }
 
 
-// Override to allow orientations other than the default portrait orientation.
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+      return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
 - (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 	
-	// Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+
 }
 
 

@@ -10,6 +10,7 @@
 @class CalendarEvent;
 @class SMScheduleDetailedView;
 @class SMLoginViewController;
+@class MapKitDisplayViewController;
 
 @interface SMScheduleDetailedView : UIViewController {
 	UILabel *eventDatelabel;
@@ -24,6 +25,8 @@
 	UIButton *mapIt;
 	UILabel *homeScoreLabel;
 	UILabel *awayScoreLabel;
+	MapKitDisplayViewController *mapEvent;
+	
 }
 
 
@@ -38,8 +41,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *addCityLabel;
 @property (nonatomic, retain) IBOutlet UILabel *venueNameLabel;
 @property (nonatomic, retain) IBOutlet UISwitch *availSwitch;
-//@property (nonatomic, retain) IBAction UIButton *mapIt;
-@property (nonatomic, retain) IBOutlet UIButton *addToCalendar;
+@property (nonatomic, retain) IBOutlet MapKitDisplayViewController *mapEvent;
+//@property (nonatomic, retain) IBAction UIButton *addToCalendar;
 @property (nonatomic, retain) IBOutlet UILabel *homeTeamLabel;
 @property (nonatomic, retain) IBOutlet UILabel *awayTeamLabel;
 @property (nonatomic, retain) IBOutlet UILabel *homeScoreLabel;

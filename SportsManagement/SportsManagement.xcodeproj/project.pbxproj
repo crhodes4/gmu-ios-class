@@ -92,7 +92,7 @@
 		B58C655812B15F85001D5A0B /* DisplayMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayMap.m; sourceTree = "<group>"; };
 		B58C655912B15F85001D5A0B /* DisplayMapViewCOntroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayMapViewCOntroller.h; sourceTree = "<group>"; };
 		B58C655A12B15F85001D5A0B /* DisplayMapViewCOntroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayMapViewCOntroller.m; sourceTree = "<group>"; };
-		B58C655B12B15F85001D5A0B /* DisplayMapViewCOntroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayMapViewCOntroller.xib; sourceTree = "<group>"; };
+		B58C655B12B15F85001D5A0B /* DisplayMapViewCOntroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DisplayMapViewCOntroller.xib; path = Classes/DisplayMapViewCOntroller.xib; sourceTree = "<group>"; };
 		B58C655C12B15F85001D5A0B /* MapKitDisplayAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapKitDisplayAppDelegate.h; sourceTree = "<group>"; };
 		B58C655D12B15F85001D5A0B /* MapKitDisplayAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapKitDisplayAppDelegate.m; sourceTree = "<group>"; };
 		B58C655E12B15F85001D5A0B /* MapKitDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapKitDisplayViewController.h; sourceTree = "<group>"; };
@@ -194,6 +194,7 @@
 		9193B1461280CA1D00C1F08D /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				B58C655B12B15F85001D5A0B /* DisplayMapViewCOntroller.xib */,
 				91CBD0821295BFCE00FAC9DC /* Login.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				2840D7CD1179279E00D7F93C /* Profile.xib */,
@@ -234,6 +235,14 @@
 			children = (
 				2F1D576F128CCCF400120751 /* CalendarEvent.h */,
 				2F1D5770128CCCF400120751 /* CalendarEvent.m */,
+				B58C655712B15F85001D5A0B /* DisplayMap.h */,
+				B58C655812B15F85001D5A0B /* DisplayMap.m */,
+				B58C655912B15F85001D5A0B /* DisplayMapViewCOntroller.h */,
+				B58C655A12B15F85001D5A0B /* DisplayMapViewCOntroller.m */,
+				B58C655C12B15F85001D5A0B /* MapKitDisplayAppDelegate.h */,
+				B58C655D12B15F85001D5A0B /* MapKitDisplayAppDelegate.m */,
+				B58C655E12B15F85001D5A0B /* MapKitDisplayViewController.h */,
+				B58C655F12B15F85001D5A0B /* MapKitDisplayViewController.m */,
 				2FD0F5371293798E00BFB6F2 /* SMScheduleDetailedView.h */,
 				2FD0F5381293798E00BFB6F2 /* SMScheduleDetailedView.m */,
 				9193B1791280DEAE00C1F08D /* SMScheduleViewController.h */,
@@ -255,15 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				9193B17C1280DEC600C1F08D /* SMProfileViewController.h */,
-				B58C655712B15F85001D5A0B /* DisplayMap.h */,
-				B58C655812B15F85001D5A0B /* DisplayMap.m */,
-				B58C655912B15F85001D5A0B /* DisplayMapViewCOntroller.h */,
-				B58C655A12B15F85001D5A0B /* DisplayMapViewCOntroller.m */,
-				B58C655B12B15F85001D5A0B /* DisplayMapViewCOntroller.xib */,
-				B58C655C12B15F85001D5A0B /* MapKitDisplayAppDelegate.h */,
-				B58C655D12B15F85001D5A0B /* MapKitDisplayAppDelegate.m */,
-				B58C655E12B15F85001D5A0B /* MapKitDisplayViewController.h */,
-				B58C655F12B15F85001D5A0B /* MapKitDisplayViewController.m */,
 				9193B17D1280DEC600C1F08D /* SMProfileViewController.m */,
 			);
 			name = Profile;

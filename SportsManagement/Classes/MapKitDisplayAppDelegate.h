@@ -8,6 +8,7 @@
 
 @class MapKitDisplayViewController;
 
+
 @interface MapKitDisplayAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     MapKitDisplayViewController *viewController;
