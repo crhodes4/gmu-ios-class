@@ -33,7 +33,11 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+
+//	NSString *Add = [self mapItDetails];
+//	NSLog(@"addresss = %@", Add);
+//	NSLog(@"addresss = %@", Add);
+
 	NSString *theAddress = @"1600 Pennsylvania Ave NW Washington D.C., DC 20500";
 	NSString *aTitle = @"a title";
 	NSString *aSubtitle = @"a subtitle";

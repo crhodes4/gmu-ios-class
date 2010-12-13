@@ -5,7 +5,7 @@
 //  Created by SelectiveService on 11/16/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
-
+ 
 #import "SMScheduleDetailedView.h"
 #import "CalendarEvent.h"
 #import "SMLoginViewController.h"
@@ -62,13 +62,9 @@
 		awayScoreLabel.text = [event.awayScore stringValue];
 	}
 
-		
-	
-	
-	
 }
 - (void) pushedMapIt: (id) sender { 
-  
+//- (IBAction) pushedMapIt{  
 	NSString *venueAdd1 = event.addLineOne;
 	NSLog(@"venueAdd1 = %@", venueAdd1);
 	NSString *venueAdd2 = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
@@ -80,10 +76,27 @@
 	MapKitDisplayViewController *maps = [[MapKitDisplayViewController alloc] init];
 	// set var
 	
+	
 	[self.navigationController pushViewController:maps animated:YES];
 	[maps release];
 	
 }
+///*
+-  mapItDetails { 
+ 
+	NSString *venueAdd1 = event.addLineOne;
+	NSLog(@"venueAdd1 = %@", venueAdd1);
+	NSString *venueAdd2 = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
+	NSLog(@"venueAdd2 = %@", venueAdd2);
+	NSString *venueAdd = [NSString stringWithFormat:@"%@ %@", venueAdd1, venueAdd2];
+	NSLog(@"venueAdd = %@", venueAdd);
+	
+	NSLog(@"Made it to mapItDetails");
+
+	return venueAdd;
+} //*/
+
+
 - (IBAction) pushedAddToCalendar{
 	NSLog(@"Made it to function");
 	EKEventStore *eventStore = [[EKEventStore alloc] init];

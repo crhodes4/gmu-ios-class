@@ -232,6 +232,15 @@
 		9193B1591280CBFB00C1F08D /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				B58C655712B15F85001D5A0B /* DisplayMap.h */,
+				B58C655812B15F85001D5A0B /* DisplayMap.m */,
+				B58C655912B15F85001D5A0B /* DisplayMapViewCOntroller.h */,
+				B58C655A12B15F85001D5A0B /* DisplayMapViewCOntroller.m */,
+				B58C655B12B15F85001D5A0B /* DisplayMapViewCOntroller.xib */,
+				B58C655C12B15F85001D5A0B /* MapKitDisplayAppDelegate.h */,
+				B58C655D12B15F85001D5A0B /* MapKitDisplayAppDelegate.m */,
+				B58C655E12B15F85001D5A0B /* MapKitDisplayViewController.h */,
+				B58C655F12B15F85001D5A0B /* MapKitDisplayViewController.m */,
 				2F1D576F128CCCF400120751 /* CalendarEvent.h */,
 				2F1D5770128CCCF400120751 /* CalendarEvent.m */,
 				2FD0F5371293798E00BFB6F2 /* SMScheduleDetailedView.h */,
@@ -255,15 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				9193B17C1280DEC600C1F08D /* SMProfileViewController.h */,
-				B58C655712B15F85001D5A0B /* DisplayMap.h */,
-				B58C655812B15F85001D5A0B /* DisplayMap.m */,
-				B58C655912B15F85001D5A0B /* DisplayMapViewCOntroller.h */,
-				B58C655A12B15F85001D5A0B /* DisplayMapViewCOntroller.m */,
-				B58C655B12B15F85001D5A0B /* DisplayMapViewCOntroller.xib */,
-				B58C655C12B15F85001D5A0B /* MapKitDisplayAppDelegate.h */,
-				B58C655D12B15F85001D5A0B /* MapKitDisplayAppDelegate.m */,
-				B58C655E12B15F85001D5A0B /* MapKitDisplayViewController.h */,
-				B58C655F12B15F85001D5A0B /* MapKitDisplayViewController.m */,
 				9193B17D1280DEC600C1F08D /* SMProfileViewController.m */,
 			);
 			name = Profile;

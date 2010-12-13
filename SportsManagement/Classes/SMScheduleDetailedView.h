@@ -30,7 +30,7 @@
 - (IBAction) pushedMapIt: (id) sender;
 
 - (IBAction) pushedAddToCalendar;
-
+- mapItDetails;
 
 @property (nonatomic, retain) CalendarEvent *event;
 @property (nonatomic, retain) IBOutlet UILabel *eventDatelabel;
