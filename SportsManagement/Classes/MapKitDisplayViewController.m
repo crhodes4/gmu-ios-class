@@ -8,6 +8,8 @@
 #import "CalendarEvent.h"
 #import "SMScheduleDetailedView.h"
 
+#import "SMScheduleDetailedView.h" 
+
 @implementation MapKitDisplayViewController
 
 @synthesize mapView;
@@ -22,8 +24,6 @@
 	
 	NSString *aTitle = mapEvents.venueName;
 
-	
-	
 	NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
 						   
 						   [theAddress stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

@@ -18,11 +18,11 @@
 		2F1D5771128CCCF400120751 /* CalendarEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D5770128CCCF400120751 /* CalendarEvent.m */; };
 		2FB1202412935DB300DCAB6B /* schedulecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB1202312935DB300DCAB6B /* schedulecell.xib */; };
 		2FD0F53A1293798E00BFB6F2 /* SMScheduleDetailedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD0F5381293798E00BFB6F2 /* SMScheduleDetailedView.m */; };
-		2FD0F53B1293798E00BFB6F2 /* SMScheduleDetailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FD0F5391293798E00BFB6F2 /* SMScheduleDetailedView.xib */; };
 		2FEBFEAC12AD22E5006936A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBFEAB12AD22E5006936A4 /* Utilities.m */; };
 		2FEBFECC12AD28BB006936A4 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEBFECB12AD28BB006936A4 /* EventKit.framework */; };
 		2FEBFEE412AD394E006936A4 /* away.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FEBFEE212AD394E006936A4 /* away.png */; };
 		2FEBFEE512AD394E006936A4 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FEBFEE312AD394E006936A4 /* home.png */; };
+		2FFE3F4D12B63E2400A7B4BA /* DisplayMapViewCOntroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FFE3F4C12B63E2400A7B4BA /* DisplayMapViewCOntroller.xib */; };
 		3F6F8469128C8E0800C4CA02 /* scheduledetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6F8468128C8E0800C4CA02 /* scheduledetail.xib */; };
 		91094779128A228C00E20459 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91094778128A228C00E20459 /* YAJLIOS.framework */; };
 		9193B1631280DDBD00C1F08D /* Scores.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9193B1621280DDBD00C1F08D /* Scores.xib */; };
@@ -61,12 +61,12 @@
 		2FB1202312935DB300DCAB6B /* schedulecell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = schedulecell.xib; sourceTree = "<group>"; };
 		2FD0F5371293798E00BFB6F2 /* SMScheduleDetailedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMScheduleDetailedView.h; sourceTree = "<group>"; };
 		2FD0F5381293798E00BFB6F2 /* SMScheduleDetailedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMScheduleDetailedView.m; sourceTree = "<group>"; };
-		2FD0F5391293798E00BFB6F2 /* SMScheduleDetailedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SMScheduleDetailedView.xib; path = Classes/SMScheduleDetailedView.xib; sourceTree = "<group>"; };
 		2FEBFEAA12AD22E5006936A4 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		2FEBFEAB12AD22E5006936A4 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		2FEBFECB12AD28BB006936A4 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		2FEBFEE212AD394E006936A4 /* away.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = away.png; sourceTree = "<group>"; };
 		2FEBFEE312AD394E006936A4 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		2FFE3F4C12B63E2400A7B4BA /* DisplayMapViewCOntroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DisplayMapViewCOntroller.xib; path = Classes/DisplayMapViewCOntroller.xib; sourceTree = "<group>"; };
 		3F6F8468128C8E0800C4CA02 /* scheduledetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = scheduledetail.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SportsManagement-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SportsManagement-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91094778128A228C00E20459 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
@@ -200,8 +200,8 @@
 				2840D7CD1179279E00D7F93C /* Profile.xib */,
 				282CCBFD0DB6C98000C4EA27 /* Schedule.xib */,
 				2FB1202312935DB300DCAB6B /* schedulecell.xib */,
+				2FFE3F4C12B63E2400A7B4BA /* DisplayMapViewCOntroller.xib */,
 				9193B1621280DDBD00C1F08D /* Scores.xib */,
-				2FD0F5391293798E00BFB6F2 /* SMScheduleDetailedView.xib */,
 				9193B1641280DDC800C1F08D /* Standings.xib */,
 			);
 			name = XIB;
@@ -233,6 +233,15 @@
 		9193B1591280CBFB00C1F08D /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				B58C655712B15F85001D5A0B /* DisplayMap.h */,
+				B58C655812B15F85001D5A0B /* DisplayMap.m */,
+				B58C655912B15F85001D5A0B /* DisplayMapViewCOntroller.h */,
+				B58C655A12B15F85001D5A0B /* DisplayMapViewCOntroller.m */,
+				B58C655B12B15F85001D5A0B /* DisplayMapViewCOntroller.xib */,
+				B58C655C12B15F85001D5A0B /* MapKitDisplayAppDelegate.h */,
+				B58C655D12B15F85001D5A0B /* MapKitDisplayAppDelegate.m */,
+				B58C655E12B15F85001D5A0B /* MapKitDisplayViewController.h */,
+				B58C655F12B15F85001D5A0B /* MapKitDisplayViewController.m */,
 				2F1D576F128CCCF400120751 /* CalendarEvent.h */,
 				2F1D5770128CCCF400120751 /* CalendarEvent.m */,
 				B58C655712B15F85001D5A0B /* DisplayMap.h */,
@@ -345,12 +354,12 @@
 				9193B1651280DDC800C1F08D /* Standings.xib in Resources */,
 				3F6F8469128C8E0800C4CA02 /* scheduledetail.xib in Resources */,
 				2FB1202412935DB300DCAB6B /* schedulecell.xib in Resources */,
-				2FD0F53B1293798E00BFB6F2 /* SMScheduleDetailedView.xib in Resources */,
 				91CBD0841295BFCE00FAC9DC /* Login.xib in Resources */,
 				2FEBFEE412AD394E006936A4 /* away.png in Resources */,
 				2FEBFEE512AD394E006936A4 /* home.png in Resources */,
 				B58C656212B15F85001D5A0B /* DisplayMapViewCOntroller.xib in Resources */,
 				B58C656812B15FDD001D5A0B /* MapKitDisplayViewController.xib in Resources */,
+				2FFE3F4D12B63E2400A7B4BA /* DisplayMapViewCOntroller.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
