@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSString *temp = mapEvents.addZip;
+	//NSString *temp = mapEvents.addZip;
 	
 	
 	NSString *theAddress = [NSString stringWithFormat:@"%@ %@ %@, %@", mapEvents.addLineOne, mapEvents.addCity, mapEvents.addState, mapEvents.addZip]; 

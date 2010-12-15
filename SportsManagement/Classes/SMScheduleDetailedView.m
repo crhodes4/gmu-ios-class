@@ -75,12 +75,12 @@
 	
 	
 	
-	MapKitDisplayViewController *maps = [[MapKitDisplayViewController alloc] init];
+//	MapKitDisplayViewController *maps = [[MapKitDisplayViewController alloc] init];
 	// set var
 	
 	
-	[self.navigationController pushViewController:maps animated:YES];
-	[maps release];
+//	[self.navigationController pushViewController:maps animated:YES];
+	[mapEvent release];
 
 	
 }
