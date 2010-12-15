@@ -68,23 +68,11 @@
 	mapEvent.mapEvents = event;
 	[self.navigationController pushViewController:mapEvent animated:YES];
 
-//- (IBAction) pushedMapIt{  
-	NSString *venueAdd1 = event.addLineOne;
-	
-	NSString *venueAdd2 = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
-	
-	
-	
-//	MapKitDisplayViewController *maps = [[MapKitDisplayViewController alloc] init];
-	// set var
-	
-	
-//	[self.navigationController pushViewController:maps animated:YES];
 	[mapEvent release];
 
 	
 }
-///*
+
 -  mapItDetails { 
  
 	NSString *venueAdd1 = event.addLineOne;
