@@ -42,7 +42,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *venueNameLabel;
 @property (nonatomic, retain) IBOutlet UISwitch *availSwitch;
 @property (nonatomic, retain) IBOutlet MapKitDisplayViewController *mapEvent;
-//@property (nonatomic, retain) IBAction UIButton *addToCalendar;
 @property (nonatomic, retain) IBOutlet UILabel *homeTeamLabel;
 @property (nonatomic, retain) IBOutlet UILabel *awayTeamLabel;
 @property (nonatomic, retain) IBOutlet UILabel *homeScoreLabel;

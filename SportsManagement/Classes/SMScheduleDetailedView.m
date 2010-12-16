@@ -73,21 +73,6 @@
 	
 }
 
--  mapItDetails { 
- 
-	NSString *venueAdd1 = event.addLineOne;
-	NSLog(@"venueAdd1 = %@", venueAdd1);
-	NSString *venueAdd2 = [NSString stringWithFormat:@"%@ ,%@ %@", event.addCity, event.addState, event.addZip];
-	NSLog(@"venueAdd2 = %@", venueAdd2);
-	NSString *venueAdd = [NSString stringWithFormat:@"%@ %@", venueAdd1, venueAdd2];
-	NSLog(@"venueAdd = %@", venueAdd);
-	
-	NSLog(@"Made it to mapItDetails");
-
-	return venueAdd;
-} //*/
-
-
 - (IBAction) pushedAddToCalendar{
 	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	EKEvent *newEvent = [EKEvent eventWithEventStore:eventStore];
